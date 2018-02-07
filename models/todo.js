@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 
+// == Model
 var todoSchema = new mongoose.Schema({
 	name : {
 		type: String,
@@ -15,3 +16,7 @@ var todoSchema = new mongoose.Schema({
 	}
 });
 
+// creates the actual model
+var Todo = mongoose.model('Todo', todoSchema);
+
+module.exports = Todo;
