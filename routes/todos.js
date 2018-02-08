@@ -41,9 +41,21 @@ router.get('/:todoId', function(req, res) {
 
 // to update specific todo id object
 router.put('/:todoId', function(req, res) {
+	//req.send("TESTING"); <= test that route is working
 	db.Todo.findOneAndUpdate({_id: req.params.todoId}, req.body, {new: true}) //<= set true to show updated info
 	.then(function(todo) {
 		res.json(todo);
+	})
+	.catch(function(err) {
+		res.send(err);
+	})
+});
+
+// to delete specific todo id object
+router.delete('/:todoId', function(req, res) {
+	db.Todo.remove({_id: req.params.todoId})
+	.then(function() {
+		res.json({message: 'Deleted now!'})
 	})
 	.catch(function(err) {
 		res.send(err);
