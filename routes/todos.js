@@ -28,4 +28,26 @@ router.post('/', function(req, res) {
 	})
 });
 
+// to find and show specific todo id object
+router.get('/:todoId', function(req, res) {
+	db.Todo.findById(req.params.todoId)
+	.then(function(foundTodo) {
+		res.json(foundTodo);
+	})
+	.catch(function(err) {
+		res.send(err);
+	})
+});
+
+// to update specific todo id object
+router.put('/:todoId', function(req, res) {
+	db.Todo.findOneAndUpdate({_id: req.params.todoId}, req.body, {new: true}) //<= set true to show updated info
+	.then(function(todo) {
+		res.json(todo);
+	})
+	.catch(function(err) {
+		res.send(err);
+	})
+});
+
 module.exports = router;
