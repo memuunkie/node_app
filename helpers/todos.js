@@ -38,7 +38,7 @@ exports.getTodo = function(req, res) {
 }
 
 // PUT to '/:todoId'
-exports.putTodo = function(req, res) {
+exports.updateTodo = function(req, res) {
 	//req.send("TESTING"); <= test that route is working
 	db.Todo.findOneAndUpdate({_id: req.params.todoId}, req.body, {new: true}) //<= set true to show updated info
 	.then(function(todo) {
@@ -59,4 +59,5 @@ exports.deleteTodo = function(req, res) {
 		res.send(err);
 	})
 }
+
 module.exports = exports;
