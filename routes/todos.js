@@ -7,7 +7,7 @@ var router = express.Router();
 // connects to database, == connect_to_db helper function
 var db = require('../models');
 // connects to helper functions, == import library
-var helpers = require('../helpers');
+var helpers = require('../helpers/todos');
 
 // == @app.routes
 router.route('/')
