@@ -12,13 +12,17 @@ var todoRoutes = require('./routes/todos');
 // uses body-parser to access the request body in a put/post request
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+// for finding folders, explicitly start at current directory folder
+app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/views'));
 
 // == @app.routes
 app.get('/', function(req, res){
 	// can be text(html) or JSON returned (if formatted as JSON object)
-	res.send("HELLO FROM THE ROOT ROUTE (this is a test)");
+	// res.send("HELLO FROM THE ROOT ROUTE (this is a test)");
 	// this is more explicit: res.json({message: "HI THERE FROM EXPRESS (this is a test)"})
 	// res.send calls res.json
+	res.sendFile("index.html");
 });
 
 // pass in name of api routes (default '/') & where to find routes
