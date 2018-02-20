@@ -7,34 +7,22 @@ var db = require('../models');
 // GET to '/'
 exports.getTodos = function(req, res) {
 	db.Todo.find()
-	.then(function(todos) { // return the JSON
-		res.json(todos);
-	})
-	.catch(function(err) { //error catching
-		res.send(err);
-	})
+	.then(todos => res.json(todos)) //return JSON
+	.catch(err => res.send(err)); //error catching
 }
 
 // POST to '/'
 exports.createTodo = function(req, res) {
 	db.Todo.create(req.body)
-	.then(function(newTodo) {
-		res.status(201).json(newTodo);
-	})
-	.catch(function(err) {
-		res.send(err);
-	})
+	.then(newTodo => res.status(201).json(newTodo))
+	.catch(err => res.send(err));
 }
 
 // GET to '/:todoId'
 exports.getTodo = function(req, res) {
 	db.Todo.findById(req.params.todoId)
-	.then(function(foundTodo) {
-		res.json(foundTodo);
-	})
-	.catch(function(err) {
-		res.send(err);
-	})
+	.then(foundTodo => res.json(foundTodo))
+	.catch(err => res.send(err));
 }
 
 // PUT to '/:todoId'
